@@ -1,0 +1,25 @@
+Tools: listinstance, createinstance
+
+Perform actions in this order:
+1. Create an instance
+2. List the instance
+---
+name: listinstance
+description: Can list instance in Linode.
+args: nameofinstance: The instance name in Linode.
+
+#!/bin/bash
+linode-cli linodes list --label $nameofinstance
+
+---
+name: createinstance
+description: Can create instance in Linode.
+args: linodetype: type of linode for the instance
+args: linodeimage: type of image for the instance
+args: linoderootpswd: password for the instance
+args: linodesshkeys: keysname in Linode
+args: nameofinstance: The instance name in Linode.
+
+
+#!/bin/bash
+linode-cli linodes create --type $linodetype --region us-west --image $linodeimage --root_pass $linoderootpswd --authorized_keys "$linodesshkeys" --label $nameofinstance
